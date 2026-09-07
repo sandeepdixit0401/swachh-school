@@ -333,7 +333,7 @@ async function renderReports(filter = "all") {
 
   try {
     const data = await apiGet("/reports");
-    let reports = data.reports || [];
+    let reports = Array.isArray(data) ? data : (data.reports || []);
 
     if (filter !== "all") {
       reports = reports.filter((r) => r.status === filter);
