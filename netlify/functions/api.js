@@ -22,11 +22,11 @@ function json(status, data) {
 }
 
 function getReportsStore() {
-  return getStore({ name: "swachh-reports", consistency: "strong" });
+  return getStore({ name: "swachh-reports" });
 }
 
 function getImagesStore() {
-  return getStore({ name: "swachh-images", consistency: "strong" });
+  return getStore({ name: "swachh-images" });
 }
 
 async function loadReports() {
@@ -82,54 +82,39 @@ exports.handler = async (event) => {
         const reports = await loadReports();
         // newest first
         reports.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-        return json(200, { reports, stats: getStats(reports) });
+        return json(200, reports);
       }
-      // Serve image: /image/:id
-      const imgMatch = path.match(/\/image\/([^/]+)/);
-      if (imgMatch) {
-        const imageId = imgMatch[1];
+
+      // GET /image/:id
+      const imageMatch = path.match(/\/image\/([^/]+)/);
+      if (imageMatch) {
+        const id = imageMatch[1];
         const images = getImagesStore();
-        const imgData = await images.get(imageId, { type: "text" });
-        if (!imgData) {
-          return { statusCode: 404, headers: corsHeaders(), body: "Not found" };
-        }
-        // imgData is base64
+        const photo = await images.get(id);
+        if (!photo) return json(404, { error: "Image not found" });
         return {
           statusCode: 200,
           headers: {
-            ...corsHeaders(),
             "Content-Type": "image/jpeg",
-            "Cache-Control": "public, max-age=86400",
+            "Cache-Control": "public, max-age=31536000",
+            "Access-Control-Allow-Origin": "*",
           },
-          body: imgData,
+          body: photo,
           isBase64Encoded: true,
         };
       }
-      return json(404, { error: "Not found" });
     }
 
-    // POST /login
-    if (method === "POST" && (path === "/login" || path.endsWith("/login"))) {
+    // POST /reports
+    if (method === "POST" && (path === "/reports" || path.endsWith("/reports"))) {
       const body = JSON.parse(event.body || "{}");
-      if (body.password === ADMIN_PASSWORD) {
-        return json(200, { success: true, message: "Login successful" });
-      }
-      return json(401, { success: false, error: "Wrong password" });
-    }
+      let { photo, location, description, reporterName } = body;
 
-    // POST /reports  (create)
-    if (method === "POST" && (path === "/reports" || path.endsWith("/reports") || path === "/" || path === "")) {
-      const body = JSON.parse(event.body || "{}");
-      let photo = body.photo || "";
-      const location = (body.location || "").trim();
-      const description = (body.description || "").trim() || "कोई विवरण नहीं";
-      const reporterName = (body.reporterName || "").trim() || "अनाम छात्र";
-
-      if (!photo || !location) {
-        return json(400, { error: "Photo and location are required" });
+      if (!photo) {
+        return json(400, { error: "Photo is required" });
       }
 
-      // Strip data URL prefix if present
+      // Remove data URL prefix if present
       if (photo.includes(",")) {
         photo = photo.split(",")[1];
       }
