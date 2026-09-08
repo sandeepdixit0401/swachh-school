@@ -22,11 +22,11 @@ function json(status, data) {
 }
 
 function getReportsStore() {
-  return getStore({ name: "swachh-reports", consistency: "strong" });
+  return getStore({ name: "swachh-reports" });   // strong hata diya
 }
 
 function getImagesStore() {
-  return getStore({ name: "swachh-images", consistency: "strong" });
+  return getStore({ name: "swachh-images" });    // strong hata diya
 }
 
 async function loadReports() {
