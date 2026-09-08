@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>एडमिन पैनल </title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🌿</div>
+      <span>Govt. Sandipani H.S.S Rajgarh</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">होम</a></li>
+      <li><a href="report.html">रिपोर्ट करें</a></li>
+      <li><a href="track.html">स्टेटस चेक</a></li>
+      <li><a href="admin.html" class="active">एडमिन</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" style="padding-top: 2rem;">
+    <!-- Login Form -->
+    <div id="loginSection" class="admin-login">
+      <div class="form-card">
+        <h2 class="section-title" style="margin-bottom:1.5rem;">🔐 एडमिन लॉगिन</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="password">पासवर्ड</label>
+            <input type="password" id="password" placeholder="एडमिन पासवर्ड डालें" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+            लॉगिन करें
+          </button>
+          <p style="text-align:center; margin-top:1rem; font-size:0.85rem; color:#64748b;">
+           
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard (hidden until login) -->
+    <div id="dashboardSection" style="display:none;">
+      <div class="admin-header">
+        <div>
+          <h2 class="section-title" style="text-align:left; margin:0;">एडमिन डैशबोर्ड</h2>
+          <p style="color:#0f766e; margin-top:0.3rem;">सभी गंदगी रिपोर्ट्स यहाँ देखें और अपडेट करें</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="logoutBtn">🚪 लॉगआउट</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="adminTotal">0</div>
+          <div class="stat-label">कुल</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="adminPending">0</div>
+          <div class="stat-label">लंबित</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="adminProcessing">0</div>
+          <div class="stat-label">प्रोसेसिंग</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="adminCompleted">0</div>
+          <div class="stat-label">पूर्ण</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">सभी</button>
+        <button class="filter-btn" data-filter="pending">लंबित</button>
+        <button class="filter-btn" data-filter="processing">प्रोसेसिंग</button>
+        <button class="filter-btn" data-filter="completed">पूर्ण</button>
+      </div>
+
+      <!-- Report List -->
+      <div class="report-list" id="reportList">
+        <!-- Reports will be rendered here by JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🌿 स्वच्छ स्कूल पोर्टल • Clean School Initiative</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAdminPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>स्टेटस चेक करें </title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🌿</div>
+      <span>Govt. Sandipani H.S.S Rajgarh</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">होम</a></li>
+      <li><a href="report.html">रिपोर्ट करें</a></li>
+      <li><a href="track.html" class="active">स्टेटस चेक</a></li>
+      <li><a href="admin.html">एडमिन</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" style="padding-top: 2rem;">
+    <h2 class="section-title">🔍 रिपोर्ट स्टेटस चेक करें</h2>
+    <p class="section-subtitle">अपना Report ID डालकर देखें कि काम पूरा हुआ या नहीं</p>
+
+    <div class="form-card" style="max-width: 520px; margin: 0 auto 2rem;">
+      <form id="trackForm">
+        <div class="form-group">
+          <label for="trackId">Report ID</label>
+          <input type="text" id="trackId" placeholder="जैसे: R7K2M9" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+          🔍 स्टेटस देखें
+        </button>
+      </form>
+    </div>
+
+    <div id="trackResult" style="max-width: 560px; margin: 0 auto;">
+      <!-- Result will appear here -->
+    </div>
+  </div>
+
+  <footer>
+    <p>🌿 स्वच्छ स्कूल पोर्टल • Clean School Initiative</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initTrackPage();
+    });
+  </script>
+</body>
+</html>

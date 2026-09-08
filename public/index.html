@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Cleanliness Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🌿</div>
+      <span>Govt. Sandipani H.S.S Rajgarh</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">होम</a></li>
+      <li><a href="report.html">रिपोर्ट करें</a></li>
+      <li><a href="track.html">स्टेटस चेक</a></li>
+      <li><a href="admin.html">एडमिन</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">🏫 स्वच्छ भारत • स्वच्छ स्कूल</div>
+    <h1>हमारा स्कूल, हमारा गर्व</h1>
+    <p>गंदगी देखी? तुरंत फोटो खींचकर रिपोर्ट करें। हम मिलकर स्कूल को साफ-सुथरा बनाएंगे!</p>
+    <div class="hero-buttons">
+      <a href="report.html" class="btn btn-primary">📷 गंदगी रिपोर्ट करें</a>
+      <a href="#how" class="btn btn-secondary">कैसे काम करता है?</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats" id="statsSection">
+      <div class="stat-card">
+        <div class="stat-number" id="totalReports">0</div>
+        <div class="stat-label">कुल रिपोर्ट्स</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pendingReports">0</div>
+        <div class="stat-label">लंबित</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="processingReports">0</div>
+        <div class="stat-label">प्रोसेसिंग</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="completedReports">0</div>
+        <div class="stat-label">पूर्ण</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <h2 class="section-title">क्यों इस्तेमाल करें?</h2>
+    <p class="section-subtitle">छात्रों और स्टाफ के लिए आसान और प्रभावी सिस्टम</p>
+    
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">📸</div>
+        <h3>फोटो से रिपोर्ट</h3>
+        <p>कैमरा खोलकर तुरंत गंदगी की फोटो खींचें और लोकेशन के साथ भेजें।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>तेज़ कार्रवाई</h3>
+        <p>एडमिन को तुरंत नोटिफिकेशन मिलता है और स्टेटस अपडेट होता है।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>ट्रैक स्टेटस</h3>
+        <p>देखें कि आपकी रिपोर्ट प्रोसेसिंग में है या पूरा हो गया।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>स्वच्छ स्कूल</h3>
+        <p>हर छात्र एक जिम्मेदार नागरिक बनकर स्कूल को हरा-भरा रखे।</p>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <h2 class="section-title" id="how">कैसे काम करता है?</h2>
+    <p class="section-subtitle">बस 3 आसान स्टेप्स</p>
+    
+    <div class="steps">
+      <div class="step">
+        <h4>📷 फोटो लें</h4>
+        <p>गंदगी देखी तो कैमरा खोलकर फोटो खींचें</p>
+      </div>
+      <div class="step">
+        <h4>📍 डिटेल्स भरें</h4>
+        <p>जगह और थोड़ा विवरण लिखें</p>
+      </div>
+      <div class="step">
+        <h4>🚀 भेजें</h4>
+        <p>Report ID मिल जाएगा — नोट कर लें</p>
+      </div>
+      <div class="step">
+        <h4>🔍 स्टेटस चेक</h4>
+        <p>ID डालकर देखें काम पूरा हुआ या नहीं</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="report.html" class="btn btn-primary">अभी रिपोर्ट करें →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>🌿 स्वच्छ स्कूल पोर्टल • सभी छात्रों के सहयोग से • Clean School Initiative</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Govt. Sandipani H.S.S Rajgarh | Developed by Sandeep Dixit</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateHomeStats();
+    });
+  </script>
+</body>
+</html>
