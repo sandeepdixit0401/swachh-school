@@ -1,8 +1,0 @@
-{
-  "name": "swachh-school-netlify",
-  "version": "1.0.1",
-  "description": "School Cleanliness Portal for Netlify",
-  "dependencies": {
-    "@netlify/blobs": "^8.1.2"
-  }
-}
